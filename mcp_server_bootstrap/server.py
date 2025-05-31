@@ -1,6 +1,10 @@
 from mcp.server.fastmcp import FastMCP
 
-mcp = FastMCP("Demo Server")
+mcp = FastMCP(
+    "Demo Server",
+    description="A minimal MCP server demo for Cursor integration.",
+    version="0.1.0"
+)
 
 @mcp.resource("echo://{message}")
 def echo_resource(message: str) -> str:

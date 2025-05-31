@@ -21,12 +21,12 @@ async def main():
             print("Resources:", resources)
 
             tools = await session.list_tools()
-            print("Tools:", tools)
+            print("Tools:", tools.tools)
 
-            if tools:
-                tool_name = tools[0].name
+            if tools.tools:
+                tool_name = tools.tools[0].name
                 print(f"Calling tool: {tool_name}")
-                result = await session.call_tool(tool_name, {"message": "Hello from client!"})
+                result = await session.call_tool(tool_name, {"message": "hello tools"})
                 print("Tool result:", result)
 
 if __name__ == "__main__":
