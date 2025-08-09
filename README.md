@@ -70,7 +70,10 @@ The client will connect to the server, list all available endpoints, and demonst
 ## Extending the Framework
 
 - **Add new resources/tools/prompts**: Define a function and register it with the server using the provided decorators or registration methods.
-- **Advanced examples**: See `lifespan_example.py` (server) for resource management, `oauth_example.py` (client) for authentication, and `streamable_http_example.py` (client) for HTTP transport.
+- **Advanced examples**:
+  - `mcp_server_bootstrap/lifespan_example.py` shows how to use FastMCP's lifespan API for setup/teardown of resources. Run it with `python mcp_server_bootstrap/lifespan_example.py`.
+  - `oauth_example.py` (client) for authentication.
+  - `streamable_http_example.py` (client) for HTTP transport.
 
 ## Documentation
 
