@@ -58,4 +58,5 @@ See `oauth_example.py` for an example of using OAuth authentication with the MCP
 - [Model Context Protocol Specification](https://modelcontextprotocol.io)
 
 ## Contributing
-Contributions are welcome! Please see the MCP Python SDK repository for guidelines. 
+Contributions are welcome! Please see the MCP Python SDK repository for guidelines.
+
