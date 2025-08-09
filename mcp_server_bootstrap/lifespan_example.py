@@ -40,7 +40,7 @@ def add_item(item: str, ctx: Context) -> Dict[str, Any]:
     """Add an item to the fake database and return all items."""
     db = ctx.request_context.lifespan_context
     db["items"].append(item)
-    return {"items": list(db["items"])}
+    return {"items": db["items"]}
 
 
 if __name__ == "__main__":
