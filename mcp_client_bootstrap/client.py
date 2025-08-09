@@ -19,6 +19,18 @@ def print_header(title: str) -> None:
     """Print a formatted section header."""
     print(f"\n=== {title} ===")
 
+
+def _print_resource_result(name: str, result) -> None:
+    """Print the contents of a resource result."""
+    if result.contents:
+        for content in result.contents:
+            if hasattr(content, "text"):
+                print(f"{name} resource result:", content.text)
+            elif hasattr(content, "blob"):
+                print(f"{name} resource result: <binary content>")
+    else:
+        print(f"{name} resource result: <no content>")
+
 async def main() -> None:
     """
     Connect to a local MCP server using stdio, list and call all available prompts, resources, and tools.
@@ -59,34 +71,13 @@ async def main() -> None:
             print(resources)
             # Call echo resource
             echo_res = await session.read_resource("echo://hello-client")
-            if echo_res.contents:
-                for content in echo_res.contents:
-                    if hasattr(content, "text"):
-                        print("Echo resource result:", content.text)
-                    elif hasattr(content, "blob"):
-                        print("Echo resource result: <binary content>")
-            else:
-                print("Echo resource result: <no content>")
+            _print_resource_result("Echo", echo_res)
             # Call user resource
             user_res = await session.read_resource("user://1")
-            if user_res.contents:
-                for content in user_res.contents:
-                    if hasattr(content, "text"):
-                        print("User resource result:", content.text)
-                    elif hasattr(content, "blob"):
-                        print("User resource result: <binary content>")
-            else:
-                print("User resource result: <no content>")
+            _print_resource_result("User", user_res)
             # Call project resource
             project_res = await session.read_resource("project://101")
-            if project_res.contents:
-                for content in project_res.contents:
-                    if hasattr(content, "text"):
-                        print("Project resource result:", content.text)
-                    elif hasattr(content, "blob"):
-                        print("Project resource result: <binary content>")
-            else:
-                print("Project resource result: <no content>")
+            _print_resource_result("Project", project_res)
 
             tools = await session.list_tools()
             print_header("Tools")
