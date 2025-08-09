@@ -18,8 +18,7 @@ from mcp.server.fastmcp import FastMCP
 
 mcp = FastMCP(
     "Demo Server",
-    description="A minimal MCP server demo for Cursor integration.",
-    version="0.1.0"
+    instructions="A minimal MCP server demo for MCP integration."
 )
 
 def echo_resource(message: str) -> str:

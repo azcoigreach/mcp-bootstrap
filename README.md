@@ -67,6 +67,18 @@ This repo is both a **template** and a **living context prompt** for AI agents a
 
 The client will connect to the server, list all available endpoints, and demonstrate calling each one.
 
+### Testing
+
+Automated tests ensure the bootstrap client and server continue to work as the
+project evolves.  After installing the dependencies, run:
+
+```sh
+pip install -r requirements.txt
+pytest --cov=mcp_server_bootstrap --cov=mcp_client_bootstrap
+```
+
+This will execute the unit tests and report code coverage for both packages.
+
 ## Extending the Framework
 
 - **Add new resources/tools/prompts**: Define a function and register it with the server using the provided decorators or registration methods.
@@ -91,4 +103,5 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) for detai
 ---
 
 **AI/Developer Note:**  
-This README is intended as a context prompt for both human and AI agents. When starting a new MCP-based app, use this structure and philosophy as your foundation. Extend, remix, and build upon it to create powerful, interoperable, and context-aware applications. 
+This README is intended as a context prompt for both human and AI agents. When starting a new MCP-based app, use this structure and philosophy as your foundation. Extend, remix, and build upon it to create powerful, interoperable, and context-aware applications.
+

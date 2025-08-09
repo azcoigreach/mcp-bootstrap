@@ -62,4 +62,5 @@ You can add more resources, tools, and prompts by defining new functions and reg
 - [Model Context Protocol Specification](https://modelcontextprotocol.io)
 
 ## Contributing
-Contributions are welcome! Please see the MCP Python SDK repository for guidelines. 
+Contributions are welcome! Please see the MCP Python SDK repository for guidelines.
+
