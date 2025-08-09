@@ -12,6 +12,8 @@ See also:
 - Advanced examples: lifespan_example.py
 - MCP Python SDK documentation: https://github.com/modelcontextprotocol/python-sdk?tab=readme-ov-file#adding-mcp-to-your-python-project
 """
+from dataclasses import dataclass
+from typing import Any, Dict, Optional
 from mcp.server.fastmcp import FastMCP
 
 mcp = FastMCP(
@@ -79,6 +81,13 @@ FAKE_DATABASE = {
     ]
 }
 
+
+@dataclass
+class QueryDBArgs:
+    table: str
+    filter: Optional[Dict[str, Any]] = None
+
+
 def query_db(arguments: dict) -> dict:
     """
     Query the fake database.
@@ -90,12 +99,24 @@ def query_db(arguments: dict) -> dict:
     Example:
         call_tool("query_db", {"arguments": {"table": "users", "filter": {"name": "Alice"}}})
     """
+    if not isinstance(arguments, dict):
+        return {"error": "Arguments must be a dictionary."}
+
     table = arguments.get("table")
-    filter_ = arguments.get("filter", {})
-    if table not in FAKE_DATABASE:
-        return {"error": f"Table {table} not found."}
-    results = FAKE_DATABASE[table]
-    for key, value in filter_.items():
+    if not isinstance(table, str):
+        return {"error": "Missing required 'table' string argument."}
+
+    filter_ = arguments.get("filter")
+    if filter_ is not None and not isinstance(filter_, dict):
+        return {"error": "'filter' must be a dictionary if provided."}
+
+    args = QueryDBArgs(table=table, filter=filter_)
+
+    if args.table not in FAKE_DATABASE:
+        return {"error": f"Table {args.table} not found."}
+
+    results = FAKE_DATABASE[args.table]
+    for key, value in (args.filter or {}).items():
         results = [row for row in results if row.get(key) == value]
     return {"results": results}
 
@@ -141,4 +162,4 @@ def project_resource(project_id: int) -> dict:
 mcp.resource("project://{project_id}")(project_resource)
 
 if __name__ == "__main__":
-    mcp.run() 
+    mcp.run()
