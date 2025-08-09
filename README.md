@@ -84,6 +84,10 @@ The client will connect to the server, list all available endpoints, and demonst
 
 Contributions are welcome! Please see the MCP Python SDK repository for guidelines.
 
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
 ---
 
 **AI/Developer Note:**  
