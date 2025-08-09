@@ -24,10 +24,14 @@ This project demonstrates how to create a simple MCP server that exposes multipl
    python server.py
    ```
    The server will start and expose all available endpoints for client interaction.
+3. Run the lifespan example to see resource setup/teardown:
+   ```sh
+   python lifespan_example.py
+   ```
 
 ## Files
 - `server.py`: Main entry point for the MCP server demo. Exposes echo, query_db, user, and project endpoints as resources, tools, and prompts.
-- `lifespan_example.py`: Advanced example showing how to use the MCP server lifespan API for resource management (e.g., database connections).
+- `lifespan_example.py`: Advanced example showing how to use the MCP server lifespan API for resource management (e.g., database connections). Run with `python lifespan_example.py`.
 - `requirements.txt`: Python dependencies for the server demo.
 
 ## Available Endpoints
@@ -48,7 +52,7 @@ The server exposes the following endpoints:
 ## Advanced Usage
 
 ### Lifespan API Example
-See `lifespan_example.py` for an example of managing resources (like database connections) during server startup and shutdown using the MCP lifespan API. This is useful for initializing and cleaning up resources that should persist for the server's lifetime.
+See `lifespan_example.py` for an example of managing resources (like database connections) during server startup and shutdown using the MCP lifespan API. Run it with `python lifespan_example.py` to observe initialization and cleanup of a resource that persists for the server's lifetime.
 
 ### Adding More Resources, Tools, and Prompts
 You can add more resources, tools, and prompts by defining new functions and registering them with the MCP server instance using the appropriate decorators or registration methods.
